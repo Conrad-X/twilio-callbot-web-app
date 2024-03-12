@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 import {
   Table,
   TableBody,
@@ -59,8 +60,8 @@ const Caller = () => {
     }
   };
 
-  const handleCall = (phoneNumber) => {
-    // Implement call functionality
+  const handleCall = async (phoneNumber) => {
+    const response = await axios.post(`https://call-bot-server-21da804e0682.herokuapp.com/make-a-call`, {})
     toast(`Calling ${phoneNumber}`, { type: 'success' })
     console.log(`Calling ${phoneNumber}`);
   };
