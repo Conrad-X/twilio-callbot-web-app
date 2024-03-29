@@ -49,3 +49,20 @@ export const getCallers = async () => {
     }
 }
 
+
+export const getCallerListPaginated = async (page) =>{
+    const config = getAuthConfig()
+    // const page=1
+    console.log("page req",page);
+    const limit=2
+    try {
+        const res = await axios.get(`${authBaseURL}/paginatedcallers?page=${page}&limit=${limit}`, config)
+
+        console.log("caller result", res)
+
+        return res.data;
+    } catch (err) {
+        throw err.response.data
+    }
+}
+
