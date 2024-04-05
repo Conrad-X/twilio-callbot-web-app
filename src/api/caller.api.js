@@ -52,13 +52,33 @@ export const getCallers = async () => {
 
 export const getCallerListPaginated = async (page) =>{
     const config = getAuthConfig()
-    // const page=1
+    
     console.log("page req",page);
     const limit=2
     try {
         const res = await axios.get(`${authBaseURL}/paginatedcallers?page=${page}&limit=${limit}`, config)
 
         console.log("caller result", res)
+
+        return res.data;
+    } catch (err) {
+        throw err.response.data
+    }
+}
+
+
+export const updateCaller = async (props) => {
+    console.log("update caller",props)
+    const { id, name, description, phoneNumber } = props
+    const config = getAuthConfig()
+
+    try {
+        const res = await axios.post(`${authBaseURL}/updateCaller`, {
+            id,
+            name,
+            description,
+            phoneNumber,
+        }, config)
 
         return res.data;
     } catch (err) {
