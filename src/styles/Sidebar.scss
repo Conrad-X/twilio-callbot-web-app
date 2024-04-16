@@ -1,0 +1,57 @@
+.MuiDrawer-paper {
+  background: #f0f2f5; 
+  color: #333;
+  border-right: 1px solid #e0e0e0; 
+  
+  @media (max-width: 600px) {
+    width: 72px;
+    transition: width 0.2s ease-in-out;
+    
+    .MuiList-item {
+      display: none;
+    }
+    
+    &:hover,
+    &:focus {
+      width: 240px; 
+      .MuiList-item {
+        display: block; 
+      }
+    }
+  }
+}
+
+.MuiList-item {
+  /* Style list items */
+  padding: 16px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  &:hover {
+    background: #e0e0e0; 
+  }
+  
+  &.MuiListItem-selected {
+    background: #ccc; 
+  }
+  
+  .MuiListItemIcon-root {
+    min-width: 32px; 
+    color: #888; 
+  }
+  
+  .MuiListItemText-primary {
+    font-weight: 500;
+  }
+}
+
+.MuiIconButton-root {
+  color: white; 
+  
+  &:hover {
+    color: white; 
+  }
+}
+
+.MuiTypography-h6 {
+  color: white;}

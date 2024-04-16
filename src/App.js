@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { PublicRoute } from './Router/publicRoutes';
 import { PrivateRoute } from './Router/privateRoute';
 import { useSelector } from 'react-redux';

@@ -1,3 +1,5 @@
+// Caller.jsx
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {
@@ -24,7 +26,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
-
+import '../../styles/caller/Caller.scss'; // Add this line
 
 const Caller = () => {
   const [callers, setCallers] = useState([]);
@@ -77,36 +79,36 @@ const Caller = () => {
   }, [])
 
   return (
-    <div>
-      <Button style={{ marginBottom: '20px', cursor: 'pointer' }} variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
+    <div className="caller-container"> {/* Add className */}
+      <Button className="add-caller-button" variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
         Add Caller
       </Button>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="caller-table"> {/* Add className */}
         <Table>
         <TableHead>
-            <TableRow style={{ backgroundColor: '#f5f5f5' }}>
-              <TableCell colSpan={4} style={{ textAlign: 'center', fontWeight: 'bolder', fontSize: '25px' }}>
+            <TableRow className="table-header"> {/* Add className */}
+              <TableCell colSpan={4} className="table-header-cell"> {/* Add className */}
                 Callers
               </TableCell>
             </TableRow>
-            <TableRow style={{ backgroundColor: '#e0e0e0' }}>
-              <TableCell style={{ fontWeight: 'bolder' }}>Name</TableCell>
-              <TableCell style={{ fontWeight: 'bolder' }}>Description</TableCell>
-              <TableCell style={{ fontWeight: 'bolder' }}>Phone Number</TableCell>
-              <TableCell style={{ fontWeight: 'bolder' }}>Actions</TableCell>
+            <TableRow className="table-row-header"> {/* Add className */}
+              <TableCell>Name</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Phone Number</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {callers.map((caller) => (
-              <TableRow key={caller.id}>
+              <TableRow key={caller.id} className="table-row"> {/* Add className */}
                 <TableCell>{caller.name}</TableCell>
                 <TableCell>{caller.description}</TableCell>
                 <TableCell>{caller.phoneNumber}</TableCell>
                 <TableCell>
-                  <Button style={{ cursor: 'pointer' }} onClick={() => handleCall(caller.phoneNumber)} color="primary">
+                  <Button className="call-button" onClick={() => handleCall(caller.phoneNumber)} color="primary">
                     <CallIcon />
                   </Button>
-                  <IconButton style={{ cursor: 'pointer' }} onClick={() => handleDeleteCaller(caller.id)} color="error">
+                  <IconButton className="delete-button" onClick={() => handleDeleteCaller(caller.id)} color="error">
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -116,7 +118,7 @@ const Caller = () => {
         </Table>
       </TableContainer>
       <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
-        <DialogTitle style={{ fontWeight: 'bolder' }}>Add Caller</DialogTitle>
+        <DialogTitle className="dialog-title">Add Caller</DialogTitle> {/* Add className */}
         <DialogContent>
           <TextField
             label="Name"
