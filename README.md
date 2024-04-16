@@ -1,3 +1,51 @@
+
+**Twilio Calling Web App**
+
+Simplify call center operations and empower agents with an AI-driven web app built on Twilio. 
+## Features
+1) **Automated Calling Workforce**: Leverage AI bots to handle high-volume, repetitive calls, freeing up human agents for complex interactions. (Think appointment reminders, surveys, or lead qualification.)
+2) **Real-time Call Center Pulse**: Monitor call progress, agent availability, and key metrics through a sleek, intuitive dashboard. Gain instant insights at a glance.
+3) **Seamless Agent Integration**: Empower agents to effortlessly join calls, manage outcomes, and take detailed notes – all within the web app. No more context switching!
+4) **Customizable Call Flows**: Craft tailored call journeys that match your specific needs. Route calls to the right agents, automate tasks, and optimize agent workflows.
+5) **Actionable Analytics**: Gain valuable insights into call performance, agent productivity, and customer interactions. Make data-driven decisions to continuously improve your call center.
+
+# Demo
+![image](https://github.com/Conrad-X/twilio-callbot-web-app/assets/163117479/ed7f8c6c-9052-4b96-b269-9132a6d0bd9a)
+
+# Tech Stack
+1) **Front-end Framework**: React for a dynamic and responsive user interface.
+2) **JavaScript (with Twilio SDK)**: Enables real-time communication features and seamless integration with Twilio's API.
+3) **Backend Server**: Node.js to handle data processing, manage call logic, and interact with databases.
+4) **Database** : MariaDB for storing call records, agent data, and other relevant information.
+5) **Cloud Communication Platform (Twilio)**: The backbone of your call center. Twilio provides the core functionality for making and receiving calls, managing communication infrastructure, and sending SMS. 
+
+### 1) Clone the repositiory
+```
+https://github.com/Conrad-X/twilio-callbot-web-app.git
+```
+### 2) Install npm dependencies
+```
+npm install
+```
+### 3) Copy the environment variables to .env and change the values
+```
+cp .env.example .env
+```
+### 4) Run the dev server
+```
+npm start
+```
+### 5) Run the fornt end
+```
+npm start
+```
+### 6)Open the app in your browser
+Visit http://localhost:3000 in your browser.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
