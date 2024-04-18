@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { REACT_APP_SERVER_URL } from '../constants/constants';
-
+// require('dotenv').config()
 const authBaseURL = `${REACT_APP_SERVER_URL}/auth`;
 
 export const signIn = async (email, password) => {

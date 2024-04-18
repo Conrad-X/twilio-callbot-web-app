@@ -25,6 +25,7 @@ import { Copyright } from "../atoms/Copyright.atom";
 import { useTheme } from "@emotion/react";
 import { theme } from "../theme";
 import { Outlet, useNavigate } from "react-router-dom";
+import AccountMenu from "./AccountMenu";
 
 const drawerWidth = 240;
 
@@ -86,6 +87,7 @@ export const Sidebar = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("firstName")
     window.location.reload()
+    // console.log("Logout")
   }
 
   return (
@@ -119,10 +121,11 @@ export const Sidebar = () => {
             >
               ConradX
             </Typography>
-            <Typography>Logout</Typography>
+            {/* <Typography>Logout</Typography>
             <IconButton color="inherit" onClick={handleLogout}>
               <Logout />
-            </IconButton>
+            </IconButton> */}
+            <AccountMenu handleLogout={handleLogout} />
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
