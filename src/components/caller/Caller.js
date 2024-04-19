@@ -369,7 +369,7 @@ const Caller = () => {
             variant="outlined"
             color="primary"
             sx={{ fontSize: 80 }}
-            onClick={() => setOpenPopup(true)}
+            // onClick={() => setOpenPopup(true)}
           >
             Add Caller
           </AddCircleRoundedIcon>

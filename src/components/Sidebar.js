@@ -26,6 +26,7 @@ import { useTheme } from "@emotion/react";
 import { theme } from "../theme";
 import { Outlet, useNavigate } from "react-router-dom";
 import AccountMenu from "./AccountMenu";
+import logo from "../logo.svg";
 
 const drawerWidth = 240;
 
@@ -75,20 +76,20 @@ const Drawer = styled(MuiDrawer, {
 
 export const Sidebar = () => {
   const appTheme = useTheme(theme);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user")
-    localStorage.removeItem("email")
-    localStorage.removeItem("token")
-    localStorage.removeItem("firstName")
-    window.location.reload()
+    localStorage.removeItem("user");
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
+    localStorage.removeItem("firstName");
+    window.location.reload();
     // console.log("Logout")
-  }
+  };
 
   return (
     <ThemeProvider theme={appTheme}>
@@ -112,7 +113,7 @@ export const Sidebar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
+            {/* <Typography
               component="h1"
               variant="h6"
               color="inherit"
@@ -120,12 +121,48 @@ export const Sidebar = () => {
               sx={{ flexGrow: 1 }}
             >
               ConradX
-            </Typography>
-            {/* <Typography>Logout</Typography>
+            </Typography> */}
+
+            <div
+              style={{
+                // borderStyle: "solid",
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  // borderStyle: "solid",
+                  // borderColor: "blue",
+                }}
+              >
+                <img src={logo} alt="logo" style={{ height: "50px" }} />
+              </div>
+
+              {/* <Typography>Logout</Typography>
             <IconButton color="inherit" onClick={handleLogout}>
               <Logout />
             </IconButton> */}
-            <AccountMenu handleLogout={handleLogout} />
+              <div
+                style={{
+                  // borderColor: "red",
+                  // borderStyle: "solid",
+                  // marginRight: "0",
+                  // width: "50%",
+                  // height:"100%",
+                  // margin:"auto",
+                  position: "absolute",
+                  right: "1%",
+
+                  // padding: "0 0",
+                  // float: "left",
+                }}
+              >
+                <AccountMenu handleLogout={handleLogout} />
+              </div>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -157,17 +194,17 @@ export const Sidebar = () => {
                 : theme.palette.grey[900],
             flexGrow: 1,
             height: "100vh",
-            overflow: 'auto',
+            overflow: "auto",
           }}
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Suspense >
-            <Outlet />
-          </Suspense>
+            <Suspense>
+              <Outlet />
+            </Suspense>
           </Container>
-          </Box>
-      </Box>      
+        </Box>
+      </Box>
     </ThemeProvider>
   );
-}
+};

@@ -7,7 +7,7 @@ import { isUserLoggedIn } from './utils/userLogInCheck';
 
 function App() {
   // const loggedIn = useSelector((state) => state.loggedIn);
-  console.log((isUserLoggedIn()));
+  // console.log((isUserLoggedIn()));
   const router = createBrowserRouter([
     isUserLoggedIn() ? PrivateRoute() : {},
     ...PublicRoute(),
