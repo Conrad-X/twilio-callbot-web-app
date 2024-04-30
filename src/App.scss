@@ -1,10 +1,17 @@
 // Define variables
-$logo-height: 100vmin;
+$logo-height: 40vmin;
 $header-background-color: #282c34;
 $link-color: #61dafb;
 
 // Define mixins
-
+@mixin logo-spin-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 // Define styles
 .App {
@@ -27,8 +34,7 @@ $link-color: #61dafb;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    // color: white;
-    color: blue;
+    color: white;
   }
 
   &-link {
@@ -38,5 +44,5 @@ $link-color: #61dafb;
 
 // Define animations
 @keyframes logo-spin {
-//   @include logo-spin-animation;
+  @include logo-spin-animation;
 }
