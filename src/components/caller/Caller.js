@@ -26,7 +26,6 @@ import Stack from "@mui/material/Stack";
 import EditIcon from "@mui/icons-material/Edit";
 import Pagination from "@mui/material/Pagination";
 
-
 import {
   addCaller,
   deleteCaller,
@@ -44,7 +43,6 @@ import CallerTableHeader from "./CallerTableHeader";
 const Caller = () => {
   async function fetchCallers(page) {
     const resp = await getCallerListPaginated(page);
-   
 
     setCallers(resp.callers);
     setTotal(resp.count);
@@ -68,11 +66,9 @@ const Caller = () => {
     phoneNumber: "",
   });
 
- 
-
   const pageChange = (event, page) => {
     setPage(page);
-    console.log("page changed to ", page);
+
     fetchCallers(page);
   };
 
@@ -88,14 +84,12 @@ const Caller = () => {
       toast("Caller Added", { type: "success" });
       setOpenPopup(false);
     } catch (err) {
-      console.log(err);
       toast(err.error, { type: "error" });
       setOpenPopup(false);
     }
   };
 
   const handleEditPopup = async (updatedCaller) => {
-  
     setEditCaller(updatedCaller);
     setOpenEditPopup(true);
   };
@@ -107,12 +101,11 @@ const Caller = () => {
       }
       setOpenEditPopup(false);
       const caller = await updateCaller(editCaller);
-    
+
       fetchCallers(page);
       setEditCaller({ name: "", description: "", phoneNumber: "" });
       toast("Caller Updated", { type: "success" });
     } catch (err) {
-      console.log(err);
       toast(err.error, { type: "error" });
       setOpenEditPopup(false);
     }
@@ -135,7 +128,6 @@ const Caller = () => {
       {}
     );
     toast(`Calling ${phoneNumber}`, { type: "success" });
-    console.log(`Calling ${phoneNumber}`);
   };
 
   useEffect(() => {
@@ -197,12 +189,11 @@ const Caller = () => {
       : (a, b) => -descendingComparator(a, b, valueToOrderBy);
   }
 
-  const borderStyle="hidden"
+  const borderStyle = "hidden";
 
   return (
-    <div style={ {borderStyle:borderStyle, borderColor:"red" }}>
+    <div style={{ borderStyle: borderStyle, borderColor: "red" }}>
       <div style={{ position: "relative", borderStyle: borderStyle }}>
-       
         <h1>Callers</h1>
         <TableContainer component={Paper}>
           <Table>
@@ -315,7 +306,6 @@ const Caller = () => {
             <TextField
               label="Name"
               placeholder="Enter name"
-             
               onChange={(e) =>
                 setEditCaller({ ...editCaller, name: e.target.value })
               }
@@ -325,7 +315,6 @@ const Caller = () => {
             <TextField
               label="Description"
               placeholder="Enter description"
-             
               onChange={(e) =>
                 setEditCaller({ ...editCaller, description: e.target.value })
               }
@@ -334,7 +323,6 @@ const Caller = () => {
             />
             <PhoneInput
               placeholder="Enter phone number"
-             
               onChange={(e) => setEditCaller({ ...editCaller, phoneNumber: e })}
             />
           </DialogContent>
@@ -360,7 +348,6 @@ const Caller = () => {
       </div>
 
       <div>
-      
         <IconButton
           style={{ position: "absolute", right: "2%", bottom: "5%" }}
           onClick={() => setOpenPopup(true)}
@@ -380,25 +367,22 @@ const Caller = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-          
-            
+
             bottom: "7%",
             width: "50%",
             paddingTop: "10px",
-          
-            marginLeft:"auto",
-            marginRight:"auto",
-            borderStyle:borderStyle,
+
+            marginLeft: "auto",
+            marginRight: "auto",
+            borderStyle: borderStyle,
           }}
         >
-        
-            <Pagination
-              count={total}
-              shape="rounded"
-              size="large"
-              onChange={(e, page) => pageChange(e, page)}
-            />
-         
+          <Pagination
+            count={total}
+            shape="rounded"
+            size="large"
+            onChange={(e, page) => pageChange(e, page)}
+          />
         </div>
       </div>
     </div>

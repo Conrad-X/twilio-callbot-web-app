@@ -8,7 +8,7 @@ const authBaseURL = `${REACT_APP_SERVER_URL}/caller`;
 export const addCaller = async (props) => {
     const { name, description, phoneNumber } = props
     const config = getAuthConfig()
-    // console.log(name, description, phoneNumber, config);
+   
     try {
         const res = await axios.post(`${authBaseURL}`, {
             name,
@@ -43,7 +43,7 @@ export const getCallers = async () => {
 
     try {
         const res = await axios.get(`${authBaseURL}`, config)
-        console.log(res.data);
+      
         return res.data;
     } catch (err) {
         throw err.response.data
@@ -54,12 +54,12 @@ export const getCallers = async () => {
 export const getCallerListPaginated = async (page) =>{
     const config = getAuthConfig()
     
-    // console.log("page req",page);
+ 
     const limit=2
     try {
         const res = await axios.get(`${authBaseURL}/paginatedcallers?page=${page}&limit=${limit}`, config)
 
-        // console.log("caller result", res)
+    
 
         return res.data;
     } catch (err) {
@@ -69,7 +69,7 @@ export const getCallerListPaginated = async (page) =>{
 
 
 export const updateCaller = async (props) => {
-    // console.log("update caller",props)
+  
     const { id, name, description, phoneNumber } = props
     const config = getAuthConfig()
 

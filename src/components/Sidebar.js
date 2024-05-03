@@ -27,6 +27,7 @@ import { theme } from "../theme";
 import { Outlet, useNavigate } from "react-router-dom";
 import AccountMenu from "./AccountMenu";
 import logo from "../logo.svg";
+import "./sidebarStyleSheet.css";
 
 const drawerWidth = 240;
 
@@ -88,7 +89,6 @@ export const Sidebar = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("firstName");
     window.location.reload();
-    // console.log("Logout")
   };
 
   return (
@@ -113,66 +113,24 @@ export const Sidebar = () => {
             >
               <MenuIcon />
             </IconButton>
-            {/* <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              ConradX
-            </Typography> */}
 
-            <div
-              style={{
-                // borderStyle: "solid",
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <div
-                style={{
-                  width: "50%",
-                  // borderStyle: "solid",
-                  // borderColor: "blue",
-                }}
-              >
-                <img src={logo} alt="logo" style={{ height: "50px" }} />
+            <div id="flex-container">
+              <div id="image-div">
+                <img src={logo} alt="logo" id="logo-image" />
               </div>
-
-              {/* <Typography>Logout</Typography>
-            <IconButton color="inherit" onClick={handleLogout}>
-              <Logout />
-            </IconButton> */}
-              <div
-                style={{
-                  // borderColor: "red",
-                  // borderStyle: "solid",
-                  // marginRight: "0",
-                  // width: "50%",
-                  // height:"100%",
-                  // margin:"auto",
-                  position: "absolute",
-                  right: "1%",
-
-                  // padding: "0 0",
-                  // float: "left",
-                }}
-              >
+              <div id="account-menu-div">
                 <AccountMenu handleLogout={handleLogout} />
               </div>
             </div>
+
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
-            }}
+          <Toolbar  
+          
+            id="drawer-toolbar"
+            
+         
           >
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
@@ -187,14 +145,13 @@ export const Sidebar = () => {
         </Drawer>
         <Box
           component="main"
+          id="box-main"
           sx={{
             backgroundColor: (theme) =>
               theme.palette.mode === "light"
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
+            
           }}
         >
           <Toolbar />

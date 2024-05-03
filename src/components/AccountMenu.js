@@ -28,7 +28,7 @@ export default function AccountMenu(props) {
 
   useEffect(() => { 
     setName(localStorage.getItem('firstName'))
-    // console.log("name",name)
+    
     setFirstInitial(name[0])
   }, [localStorage.getItem('firstName')])
 
