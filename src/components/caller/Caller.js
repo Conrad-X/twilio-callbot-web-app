@@ -25,6 +25,7 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import Stack from "@mui/material/Stack";
 import EditIcon from "@mui/icons-material/Edit";
 import Pagination from "@mui/material/Pagination";
+import "./callerStyleSheet.css";
 
 import {
   addCaller,
@@ -39,6 +40,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import CallerTableHeader from "./CallerTableHeader";
+import * as constants from "./callerTableConstants";
 
 const Caller = () => {
   async function fetchCallers(page) {
@@ -57,8 +59,8 @@ const Caller = () => {
   });
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(1);
-  const [valueToOrderBy, setValueToOrderBy] = useState("name");
-  const [orderDirection, setOrderDirection] = useState("asc");
+  const [valueToOrderBy, setValueToOrderBy] = useState(constants.CALLER_NAME);
+  const [orderDirection, setOrderDirection] = useState(constants.ASC_ORDER);
   const [openEditPopup, setOpenEditPopup] = useState(false);
   const [editCaller, setEditCaller] = useState({
     name: "",
@@ -136,17 +138,17 @@ const Caller = () => {
 
   const headers = [
     {
-      id: "name",
+      id: constants.CALLER_NAME,
       numeric: false,
       label: "Name",
     },
     {
-      id: "description",
+      id: constants.CALLER_DESCRIPTION,
       numeric: false,
       label: "Description",
     },
     {
-      id: "phoneNumber",
+      id: constants.CALLER_PHONE_NUMBER,
       numeric: false,
       label: "Phone Number",
     },
@@ -158,9 +160,9 @@ const Caller = () => {
   ];
 
   const handleRequestSort = (event, property) => {
-    const isAscending = valueToOrderBy === property && orderDirection === "asc";
+    const isAscending = valueToOrderBy === property && orderDirection === constants.ASC_ORDER;
     setValueToOrderBy(property);
-    setOrderDirection(isAscending ? "desc" : "asc");
+    setOrderDirection(isAscending ? constants.DESC_ORDER : constants.ASC_ORDER);
   };
 
   const sortedRowInformation = (rowArray, comparator) => {
@@ -184,16 +186,16 @@ const Caller = () => {
   }
 
   function getComparator(order, valueToOrderBy) {
-    return order === "desc"
+    return order === constants.DESC_ORDER
       ? (a, b) => descendingComparator(a, b, valueToOrderBy)
       : (a, b) => -descendingComparator(a, b, valueToOrderBy);
   }
 
-  const borderStyle = "hidden";
+
 
   return (
-    <div style={{ borderStyle: borderStyle, borderColor: "red" }}>
-      <div style={{ position: "relative", borderStyle: borderStyle }}>
+    <div id="main-div" >
+      <div id="table-div">
         <h1>Callers</h1>
         <TableContainer component={Paper}>
           <Table>
@@ -208,20 +210,21 @@ const Caller = () => {
                 getComparator(orderDirection, valueToOrderBy)
               ).map((caller) => (
                 <TableRow key={caller.id}>
-                  <TableCell style={{ fontSize: "16px" }}>
+                  <TableCell className="table-row" >
                     {caller.name}
                   </TableCell>
-                  <TableCell style={{ fontSize: "16px" }}>
+                  <TableCell className="table-row" >
                     {caller.description}
                   </TableCell>
-                  <TableCell style={{ fontSize: "16px" }}>
+                  <TableCell className="table-row" >
                     {caller.phoneNumber}
                   </TableCell>
                   <TableCell>
                     <Stack
+                      id="button-stack"
                       direction="row"
                       spacing={2}
-                      style={{ position: "relative", marginLeft: "30%" }}
+                      
                     >
                       <Button
                         style={{ cursor: "pointer" }}
@@ -374,7 +377,7 @@ const Caller = () => {
 
             marginLeft: "auto",
             marginRight: "auto",
-            borderStyle: borderStyle,
+            borderStyle: constants.BORDER_STYLE,
           }}
         >
           <Pagination
