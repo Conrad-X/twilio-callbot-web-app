@@ -1,0 +1,35 @@
+// signIn.scss
+
+.signin-container {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .signin-avatar {
+    margin: 8px;
+    background-color: #1976d2;
+  }
+  
+  .signin-title {
+    margin-bottom: 8px;
+  }
+  
+  .signin-form {
+    margin-top: 8px;
+    width: 100%;
+  }
+  
+  .signin-input {
+    margin-top: 8px;
+  }
+  
+  .signin-button {
+    margin-top: 24px;
+  }
+  
+  .signin-grid {
+    margin-top: 8px;
+  }
+  

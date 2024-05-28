@@ -41,6 +41,7 @@ import PhoneInput from "react-phone-number-input";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import CallerTableHeader from "./CallerTableHeader";
 import * as constants from "./callerTableConstants";
+import '../../styles/caller/Caller.scss'; // Add this line
 
 const Caller = () => {
   async function fetchCallers(page) {
@@ -194,89 +195,62 @@ const Caller = () => {
 
 
   return (
-    <div id="main-div" >
-      <div id="table-div">
-        <h1>Callers</h1>
-        <TableContainer component={Paper}>
-          <Table>
-            <CallerTableHeader
-              valueToOrderBy={valueToOrderBy}
-              orderDirection={orderDirection}
-              handleRequestSort={handleRequestSort}
-            />
-            <TableBody>
-              {sortedRowInformation(
-                callers,
-                getComparator(orderDirection, valueToOrderBy)
-              ).map((caller) => (
-                <TableRow key={caller.id}>
-                  <TableCell className="table-row" >
-                    {caller.name}
-                  </TableCell>
-                  <TableCell className="table-row" >
-                    {caller.description}
-                  </TableCell>
-                  <TableCell className="table-row" >
-                    {caller.phoneNumber}
-                  </TableCell>
-                  <TableCell>
-                    <Stack
-                      id="button-stack"
-                      direction="row"
-                      spacing={2}
-                      
-                    >
-                      <Button
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleCall(caller.phoneNumber)}
-                        color="primary"
-                      >
-                        <CallIcon />
-                      </Button>
-                      <IconButton
-                        style={{ cursor: "pointer" }}
-                        onClick={() => {
-                          handleEditPopup(caller);
-                        }}
-                        color="primary"
-                      >
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleDeleteCaller(caller.id)}
-                        color="error"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
-          <DialogTitle style={{ fontWeight: "bolder" }}>Add Caller</DialogTitle>
-          <DialogContent>
-            <TextField
-              label="Name"
-              value={newCaller.name}
-              onChange={(e) =>
-                setNewCaller({ ...newCaller, name: e.target.value })
-              }
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Description"
-              value={newCaller.description}
-              onChange={(e) =>
-                setNewCaller({ ...newCaller, description: e.target.value })
-              }
-              fullWidth
-              margin="normal"
-            />
+    <div>
+    <div className="caller-container"> {/* Add className */}
+      <Button className="add-caller-button" variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
+        Add Caller
+      </Button>
+      <TableContainer component={Paper} className="caller-table"> {/* Add className */}
+        <Table>
+        <TableHead>
+            <TableRow className="table-header"> {/* Add className */}
+              <TableCell colSpan={4} className="table-header-cell"> {/* Add className */}
+                Callers
+              </TableCell>
+            </TableRow>
+            <TableRow className="table-row-header"> {/* Add className */}
+              <TableCell>Name</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Phone Number</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {callers.map((caller) => (
+              <TableRow key={caller.id} className="table-row"> {/* Add className */}
+                <TableCell>{caller.name}</TableCell>
+                <TableCell>{caller.description}</TableCell>
+                <TableCell>{caller.phoneNumber}</TableCell>
+                <TableCell>
+                  <Button className="call-button" onClick={() => handleCall(caller.phoneNumber)} color="primary">
+                    <CallIcon />
+                  </Button>
+                  <IconButton className="delete-button" onClick={() => handleDeleteCaller(caller.id)} color="error">
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
+        <DialogTitle className="dialog-title">Add Caller</DialogTitle> {/* Add className */}
+        <DialogContent>
+          <TextField
+            label="Name"
+            value={newCaller.name}
+            onChange={(e) => setNewCaller({ ...newCaller, name: e.target.value })}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Description"
+            value={newCaller.description}
+            onChange={(e) => setNewCaller({ ...newCaller, description: e.target.value })}
+            fullWidth
+            margin="normal"
+          />
             <PhoneInput
               placeholder="Enter phone number"
               value={newCaller.phoneNumber}
@@ -388,6 +362,7 @@ const Caller = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };

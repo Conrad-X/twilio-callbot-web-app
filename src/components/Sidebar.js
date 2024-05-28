@@ -25,9 +25,10 @@ import { Copyright } from "../atoms/Copyright.atom";
 import { useTheme } from "@emotion/react";
 import { theme } from "../theme";
 import { Outlet, useNavigate } from "react-router-dom";
+
+import "../styles/Sidebar.scss"
 import AccountMenu from "./AccountMenu";
 import logo from "../logo.svg";
-import "./sidebarStyleSheet.css";
 
 const drawerWidth = 240;
 

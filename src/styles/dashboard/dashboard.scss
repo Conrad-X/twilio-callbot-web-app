@@ -1,0 +1,21 @@
+
+.MuiContainer-root {
+  max-width: unset;
+}
+
+.MuiPaper-root {
+  background-color: #fff; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+}
+
+.MuiGrid-item {
+  padding: 16px; 
+}
+
+.MuiGrid-item:nth-child(1) {
+  height: 280px; 
+}
+
+.MuiGrid-item:nth-child(2) {
+  height: 280px;
+}
