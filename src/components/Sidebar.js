@@ -25,7 +25,11 @@ import { Copyright } from "../atoms/Copyright.atom";
 import { useTheme } from "@emotion/react";
 import { theme } from "../theme";
 import { Outlet, useNavigate } from "react-router-dom";
+
 import "../styles/Sidebar.scss"
+import AccountMenu from "./AccountMenu";
+import logo from "../logo.svg";
+
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -74,19 +78,19 @@ const Drawer = styled(MuiDrawer, {
 
 export const Sidebar = () => {
   const appTheme = useTheme(theme);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user")
-    localStorage.removeItem("email")
-    localStorage.removeItem("token")
-    localStorage.removeItem("firstName")
-    window.location.reload()
-  }
+    localStorage.removeItem("user");
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
+    localStorage.removeItem("firstName");
+    window.location.reload();
+  };
 
   return (
     <ThemeProvider theme={appTheme}>
@@ -110,30 +114,19 @@ export const Sidebar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              ConradX
-            </Typography>
-            <Typography>Logout</Typography>
-            <IconButton color="inherit" onClick={handleLogout}>
-              <Logout />
-            </IconButton>
+
+            <div id="flex-container">
+              <div id="image-div">
+                <img src={logo} alt="logo" id="logo-image" />
+              </div>
+              <div id="account-menu-div">
+                <AccountMenu handleLogout={handleLogout} />
+              </div>
+            </div>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
-            }}
-          >
+          <Toolbar id="drawer-toolbar">
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
@@ -147,24 +140,22 @@ export const Sidebar = () => {
         </Drawer>
         <Box
           component="main"
+          id="box-main"
           sx={{
             backgroundColor: (theme) =>
               theme.palette.mode === "light"
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: 'auto',
           }}
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Suspense >
-            <Outlet />
-          </Suspense>
+            <Suspense>
+              <Outlet />
+            </Suspense>
           </Container>
-          </Box>
-      </Box>      
+        </Box>
+      </Box>
     </ThemeProvider>
   );
-}
+};
