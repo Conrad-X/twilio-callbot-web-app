@@ -55,3 +55,43 @@
 
 .MuiTypography-h6 {
   color: white;}
+
+  #flex-container {
+    width: 100%;
+    display: flex;
+
+}
+
+// --
+
+#image-div {
+    width: 50%;
+}
+
+#logo-image {
+    height: 50px;
+}
+
+#account-menu-div {
+
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+
+}
+
+
+#drawer-toolbar{
+   
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1px;
+}
+
+#box-main {
+    flex-grow: 1;
+    height: 100vh;
+    overflow: auto;
+    
+}

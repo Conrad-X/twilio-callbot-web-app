@@ -123,16 +123,10 @@ export const Sidebar = () => {
                 <AccountMenu handleLogout={handleLogout} />
               </div>
             </div>
-
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
-          <Toolbar  
-          
-            id="drawer-toolbar"
-            
-         
-          >
+          <Toolbar id="drawer-toolbar">
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
@@ -152,7 +146,6 @@ export const Sidebar = () => {
               theme.palette.mode === "light"
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
-            
           }}
         >
           <Toolbar />

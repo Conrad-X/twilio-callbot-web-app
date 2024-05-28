@@ -25,7 +25,8 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import Stack from "@mui/material/Stack";
 import EditIcon from "@mui/icons-material/Edit";
 import Pagination from "@mui/material/Pagination";
-import "./callerStyleSheet.css";
+
+import "../../styles/caller/Caller.scss";
 
 import {
   addCaller,
@@ -161,7 +162,8 @@ const Caller = () => {
   ];
 
   const handleRequestSort = (event, property) => {
-    const isAscending = valueToOrderBy === property && orderDirection === constants.ASC_ORDER;
+    const isAscending =
+      valueToOrderBy === property && orderDirection === constants.ASC_ORDER;
     setValueToOrderBy(property);
     setOrderDirection(isAscending ? constants.DESC_ORDER : constants.ASC_ORDER);
   };
@@ -192,65 +194,81 @@ const Caller = () => {
       : (a, b) => -descendingComparator(a, b, valueToOrderBy);
   }
 
-
-
   return (
-    <div>
-    <div className="caller-container"> {/* Add className */}
-      <Button className="add-caller-button" variant="contained" color="primary" onClick={() => setOpenPopup(true)}>
-        Add Caller
-      </Button>
-      <TableContainer component={Paper} className="caller-table"> {/* Add className */}
-        <Table>
-        <TableHead>
-            <TableRow className="table-header"> {/* Add className */}
-              <TableCell colSpan={4} className="table-header-cell"> {/* Add className */}
-                Callers
-              </TableCell>
-            </TableRow>
-            <TableRow className="table-row-header"> {/* Add className */}
-              <TableCell>Name</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Phone Number</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {callers.map((caller) => (
-              <TableRow key={caller.id} className="table-row"> {/* Add className */}
-                <TableCell>{caller.name}</TableCell>
-                <TableCell>{caller.description}</TableCell>
-                <TableCell>{caller.phoneNumber}</TableCell>
-                <TableCell>
-                  <Button className="call-button" onClick={() => handleCall(caller.phoneNumber)} color="primary">
-                    <CallIcon />
-                  </Button>
-                  <IconButton className="delete-button" onClick={() => handleDeleteCaller(caller.id)} color="error">
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
-        <DialogTitle className="dialog-title">Add Caller</DialogTitle> {/* Add className */}
-        <DialogContent>
-          <TextField
-            label="Name"
-            value={newCaller.name}
-            onChange={(e) => setNewCaller({ ...newCaller, name: e.target.value })}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Description"
-            value={newCaller.description}
-            onChange={(e) => setNewCaller({ ...newCaller, description: e.target.value })}
-            fullWidth
-            margin="normal"
-          />
+    <div id="main-div">
+      <div id="table-div">
+        <h1>Callers</h1>
+        <TableContainer component={Paper}>
+          <Table>
+            <CallerTableHeader
+              valueToOrderBy={valueToOrderBy}
+              orderDirection={orderDirection}
+              handleRequestSort={handleRequestSort}
+            />
+            <TableBody>
+              {sortedRowInformation(
+                callers,
+                getComparator(orderDirection, valueToOrderBy)
+              ).map((caller) => (
+                <TableRow key={caller.id}>
+                  <TableCell className="table-row">{caller.name}</TableCell>
+                  <TableCell className="table-row">
+                    {caller.description}
+                  </TableCell>
+                  <TableCell className="table-row">
+                    {caller.phoneNumber}
+                  </TableCell>
+                  <TableCell>
+                    <Stack id="button-stack" direction="row" spacing={2}>
+                      <Button
+                        className="row-menu-button"
+                        onClick={() => handleCall(caller.phoneNumber)}
+                        color="primary"
+                      >
+                        <CallIcon />
+                      </Button>
+                      <IconButton
+                        onClick={() => {
+                          handleEditPopup(caller);
+                        }}
+                        color="primary"
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleDeleteCaller(caller.id)}
+                        color="error"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
+          <DialogTitle style={{ fontWeight: "bolder" }}>Add Caller</DialogTitle>
+          <DialogContent>
+            <TextField
+              label="Name"
+              value={newCaller.name}
+              onChange={(e) =>
+                setNewCaller({ ...newCaller, name: e.target.value })
+              }
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Description"
+              value={newCaller.description}
+              onChange={(e) =>
+                setNewCaller({ ...newCaller, description: e.target.value })
+              }
+              fullWidth
+              margin="normal"
+            />
             <PhoneInput
               placeholder="Enter phone number"
               value={newCaller.phoneNumber}
@@ -325,35 +343,19 @@ const Caller = () => {
       </div>
 
       <div>
-        <IconButton
-          style={{ position: "absolute", right: "2%", bottom: "5%" }}
-          onClick={() => setOpenPopup(true)}
-        >
+        <IconButton id="add-caller-button" onClick={() => setOpenPopup(true)}>
           <AddCircleRoundedIcon
             variant="outlined"
             color="primary"
             sx={{ fontSize: 80 }}
-            // onClick={() => setOpenPopup(true)}
+            
           >
             Add Caller
           </AddCircleRoundedIcon>
         </IconButton>
         <div />
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-
-            bottom: "7%",
-            width: "50%",
-            paddingTop: "10px",
-
-            marginLeft: "auto",
-            marginRight: "auto",
-            borderStyle: constants.BORDER_STYLE,
-          }}
-        >
+        <div id="pagination-div">
           <Pagination
             count={total}
             shape="rounded"
