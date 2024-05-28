@@ -1,0 +1,21 @@
+#main-div{
+    border: hidden red;
+    
+}
+
+#table-div{
+    position: relative;
+
+}
+
+#button-stack{
+
+    position:relative;
+    margin-left: 30%;
+    /* border: solid black; */
+}
+
+.table-row{
+    font-size: 16px;
+}
+
